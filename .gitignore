@@ -1,0 +1,11 @@
+*.log
+*.pot
+*.pyc
+*.pyo
+__pycache__/
+*.sqlite3
+.idea/
+*.vscode
+.env
+venv/
+static/
