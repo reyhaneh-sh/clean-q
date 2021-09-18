@@ -25,6 +25,7 @@ class ClinicRegister(APIView):
         if form.is_valid():
             form.save()
             username = form.cleaned_data.get('username')
-            messages.success(request, f'Account created for {username}')
-            return redirect('clean-q-home')
+            messages.success(request, f'Your account has been created. You are now able to login.')
+            return redirect('login')
         return render(request, 'clinic/register.html', {'form': form})
+
