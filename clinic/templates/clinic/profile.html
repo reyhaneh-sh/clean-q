@@ -1,0 +1,27 @@
+{% extends "clean_q/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="content-section">
+        <div class="media">
+            <div class="media-body">
+                <h2 class="account-heading">{{ user.username }}</h2>
+                <p class="text-secondary">{{ user.clinicprofile.name }}</p>
+                <p class="text-secondary">opening time: {{ user.clinicprofile.opening_time }}</p>
+                <p class="text-secondary">closing time: {{ user.clinicprofile.closing_time }}</p>
+                <p class="text-secondary">appointments duration:
+                    {{ user.clinicprofile.appointment_duration_in_minutes }} minutes</p>
+            </div>
+        </div>
+        <form method="POST">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Clinic Info</legend>
+                {{ user_profile_form|crispy }}
+                {{ clinic_profile_form|crispy }}
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-outline-info" type="submit">Update</button>
+            </div>
+        </form>
+    </div>
+{% endblock content %}

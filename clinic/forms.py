@@ -31,3 +31,9 @@ class ClinicRegisterForm(UserCreationForm):
         clinic.description = self.cleaned_data.get('description')
         clinic.save()
         return clinic
+
+
+class ClinicProfileUpdateForm(forms.ModelForm):
+    class Meta:
+        model = ClinicProfile
+        fields = ['name', 'specialty', 'address', 'phone_number', 'description']
