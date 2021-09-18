@@ -1,0 +1,16 @@
+{% extends "clean_q/base.html" %}
+{% block content %}
+    {% for clinic in clinics %}
+        <article class="media content-section">
+            <div class="media-body">
+                <h2><a class="article-title" href="#">{{ clinic.name }}</a></h2>
+                <p class="article-content">{{ clinic.specialty }}</p>
+                <p class="article-content">{{ clinic.phone_number }}</p>
+                <p class="article-content">{{ clinic.address }}</p>
+                {% if clinic.description %}
+                    <p class="article-content">{{ clinic.description }}</p>
+                {% endif %}
+            </div>
+        </article>
+    {% endfor %}
+{% endblock content %}
