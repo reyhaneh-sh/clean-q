@@ -26,7 +26,6 @@ class ClinicRegister(APIView):
         form = ClinicRegisterForm(request.POST)
         if form.is_valid():
             form.save()
-            username = form.cleaned_data.get('username')
             messages.success(request, f'Your account has been created. You are now able to login.')
             return redirect('login')
         return render(request, 'clinic/register.html', {'form': form})
