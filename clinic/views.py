@@ -16,6 +16,7 @@ class ClinicListView(ListView):
     template_name = 'clinic/home_page.html'
     context_object_name = 'clinics'
     ordering = ['specialty']
+    paginate_by = 10
 
 
 class ClinicDetailView(DetailView):
