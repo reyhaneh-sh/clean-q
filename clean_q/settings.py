@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'user.apps.UserConfig',
     'clinic.apps.ClinicConfig',
+    'patient.apps.PatientConfig',
 ]
 
 MIDDLEWARE = [
