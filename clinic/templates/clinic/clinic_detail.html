@@ -14,7 +14,7 @@
                 <p class="article-content">{{ clinic.description }}</p>
             {% endif %}
             <p class="article-content">next appointment is available:
-                on {{ clinic.next_available_appointment_datetime.date }} at {{ clinic.next_available_appointment_datetime.time }}<a class="ml-2" href="#">Reserve</a></p>
+                on {{ clinic.next_available_appointment_datetime.date }} at {{ clinic.next_available_appointment_datetime.time }}<a class="ml-2" href="{% url 'reserve-appointment' clinic.user.username %}">Reserve</a></p>
         </div>
     </article>
 {% endblock content %}
