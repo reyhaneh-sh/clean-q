@@ -14,5 +14,8 @@ class Profile(models.Model):
                                 on_delete=models.CASCADE,
                                 primary_key=True)
 
+    class Meta:
+        abstract = True
+
     def __str__(self):
         return self.user.username
