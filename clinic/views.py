@@ -1,6 +1,7 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
+from django.views.generic import ListView
 from rest_framework.views import APIView
 
 from clinic.decorators import clinic_required
@@ -9,11 +10,11 @@ from clinic.models import ClinicProfile as Clinic
 from user.forms import UserProfileUpdateForm
 
 
-def home(request):
-    context = {
-        'clinics': Clinic.objects.all()
-    }
-    return render(request, 'clinic/home_page.html', context)
+class ClinicListView(ListView):
+    model = Clinic
+    template_name = 'clinic/home_page.html'
+    context_object_name = 'clinics'
+    ordering = ['specialty']
 
 
 class ClinicRegister(APIView):
