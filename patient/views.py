@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from rest_framework.views import APIView
 
+from patient.decorators import patient_required
 from patient.forms import PatientSignUpForm, PatientProfileUpdateForm
 from user.forms import UserProfileUpdateForm
 
@@ -26,6 +27,7 @@ class PatientSignUp(APIView):
 class PatientProfile(APIView):
     @staticmethod
     @login_required
+    @patient_required
     def get(request):
         user_profile_form = UserProfileUpdateForm(instance=request.user)
         patient_profile_form = PatientProfileUpdateForm(
@@ -40,6 +42,7 @@ class PatientProfile(APIView):
 
     @staticmethod
     @login_required
+    @patient_required
     def post(request):
         user_profile_form = UserProfileUpdateForm(request.POST,
                                                   instance=request.user)

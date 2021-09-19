@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from rest_framework.views import APIView
 
+from clinic.decorators import clinic_required
 from clinic.forms import ClinicRegisterForm, ClinicProfileUpdateForm
 from clinic.models import ClinicProfile as Clinic
 from user.forms import UserProfileUpdateForm
@@ -34,6 +35,7 @@ class ClinicRegister(APIView):
 class ClinicProfile(APIView):
     @staticmethod
     @login_required
+    @clinic_required
     def get(request):
         user_profile_form = UserProfileUpdateForm(instance=request.user)
         clinic_profile_form = ClinicProfileUpdateForm(
@@ -48,6 +50,7 @@ class ClinicProfile(APIView):
 
     @staticmethod
     @login_required
+    @clinic_required
     def post(request):
         user_profile_form = UserProfileUpdateForm(request.POST,
                                                   instance=request.user)
@@ -58,4 +61,3 @@ class ClinicProfile(APIView):
             clinic_profile_form.save()
             messages.success(request, f'Your account has been updated.')
             return redirect('clinic-profile')
-
