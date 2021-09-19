@@ -1,0 +1,12 @@
+{% extends "clean_q/base.html" %}
+{% block content %}
+    {% for appointment in appointments %}
+        <article class="media content-section">
+            <div class="media-body">
+                <h4>Patient: {{ appointment.patient.first_name }} {{ appointment.patient.last_name }}</h4>
+                <p class="article-content">on {{ appointment.get_datetime.date }} at {{ appointment.get_datetime.time }}</p>
+                <p class="article-content">duration: {{ appointment.get_appointment_duration_in_minutes }}</p>
+            </div>
+        </article>
+    {% endfor %}
+{% endblock content %}

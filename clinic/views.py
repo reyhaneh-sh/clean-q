@@ -4,6 +4,7 @@ from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView
 from rest_framework.views import APIView
 
+from appointment.models import Appointment
 from clinic.decorators import clinic_required
 from clinic.forms import ClinicRegisterForm, ClinicProfileUpdateForm
 from clinic.models import ClinicProfile as Clinic
@@ -71,3 +72,16 @@ class ClinicProfile(APIView):
             clinic_profile_form.save()
             messages.success(request, f'Your account has been updated.')
             return redirect('clinic-profile')
+
+
+class ClinicAppointments(APIView):
+    @staticmethod
+    @login_required
+    @clinic_required
+    def get(request):
+        clinic = Clinic.objects.get(user__username=request.user.username)
+        appointments = Appointment.objects.filter(clinic=clinic).order_by('_datetime')
+        context = {
+            'appointments': appointments
+        }
+        return render(request, 'clinic/appointments.html', context)

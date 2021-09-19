@@ -10,6 +10,7 @@
                 <p class="text-secondary">closing time: {{ user.clinicprofile.closing_time }}</p>
                 <p class="text-secondary">appointments duration:
                     {{ user.clinicprofile.appointment_duration_in_minutes }} minutes</p>
+                <a href="{% url 'clinic-appointments' %}">See appointments</a>
             </div>
         </div>
         <form method="POST">
