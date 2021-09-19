@@ -4,13 +4,10 @@ from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from django.db import models
 
 from clinic.constants.specialty_title import SpecialtyTitle
-from user.models import User
+from user.models import User, Profile
 
 
-class ClinicProfile(models.Model):
-    user = models.OneToOneField(User,
-                                on_delete=models.CASCADE,
-                                primary_key=True)
+class ClinicProfile(Profile):
     name = models.CharField(max_length=50)
     specialty = models.CharField(max_length=50,
                                  choices=SpecialtyTitle.CHOICES)
