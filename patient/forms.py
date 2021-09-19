@@ -30,3 +30,12 @@ class PatientSignUpForm(UserCreationForm):
         patient.birth_date = self.cleaned_data.get('birth_date')
         patient.save()
         return patient
+
+
+class PatientProfileUpdateForm(forms.ModelForm):
+    birth_date = forms.DateField(required=False,
+                                 widget=forms.SelectDateWidget(years=BirthDate.YEARS))
+
+    class Meta:
+        model = PatientProfile
+        fields = ['first_name', 'last_name', 'mobile_number', 'sex', 'birth_date']
