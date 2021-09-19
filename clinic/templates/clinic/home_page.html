@@ -1,5 +1,10 @@
 {% extends "clean_q/base.html" %}
 {% block content %}
+    <form method='GET'>
+        <label>clinic name:</label>
+        <input type='text' class="form-control" name='clinic_name' value='{{ request.GET.clinic_name }}'>
+        <button class="btn btn-outline-info" type="submit">Search</button>
+    </form>
     {% for clinic in clinics %}
         <article class="media content-section">
             <div class="media-body">

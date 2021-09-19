@@ -15,8 +15,14 @@ class ClinicListView(ListView):
     model = Clinic
     template_name = 'clinic/home_page.html'
     context_object_name = 'clinics'
-    ordering = ['specialty']
     paginate_by = 10
+
+    def get_queryset(self):
+        name = self.request.GET.get('clinic_name', '')
+        queryset = self.model.objects.all()
+        if name:
+            queryset = queryset.filter(name__icontains=name)
+        return queryset.order_by('specialty')
 
 
 class ClinicDetailView(DetailView):
