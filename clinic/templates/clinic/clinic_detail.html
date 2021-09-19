@@ -1,0 +1,20 @@
+{% extends "clean_q/base.html" %}
+{% block content %}
+    <article class="media content-section">
+        <div class="media-body">
+            <h2 class="article-title">{{ clinic.name }}</h2>
+            <p class="article-content">{{ clinic.specialty }}</p>
+            <p class="article-content">{{ clinic.phone_number }}</p>
+            <p class="article-content">{{ clinic.address }}</p>
+            <p class="text-secondary">opening time: {{ clinic.opening_time }}</p>
+            <p class="text-secondary">closing time: {{ clinic.closing_time }}</p>
+            <p class="text-secondary">appointments duration:
+                {{ clinic.appointment_duration_in_minutes }} minutes</p>
+            {% if clinic.description %}
+                <p class="article-content">{{ clinic.description }}</p>
+            {% endif %}
+            <p class="article-content">next appointment is available:
+                on {{ clinic.next_available_appointment_datetime.date }} at {{ clinic.next_available_appointment_datetime.time }}<a class="ml-2" href="#">Reserve</a></p>
+        </div>
+    </article>
+{% endblock content %}

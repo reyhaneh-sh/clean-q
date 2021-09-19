@@ -1,7 +1,7 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 from rest_framework.views import APIView
 
 from clinic.decorators import clinic_required
@@ -15,6 +15,15 @@ class ClinicListView(ListView):
     template_name = 'clinic/home_page.html'
     context_object_name = 'clinics'
     ordering = ['specialty']
+
+
+class ClinicDetailView(DetailView):
+    model = Clinic
+    template_name = 'clinic/clinic_detail.html'
+    context_object_name = 'clinic'
+
+    def get_slug_field(self):
+        return 'user__username'
 
 
 class ClinicRegister(APIView):
